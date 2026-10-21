@@ -1,0 +1,35 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} · Aditya Nihlani` : 'Aditya Nihlani';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+  </head>
+  <body>
+    <header><a href="/">Aditya Nihlani</a></header>
+    <main><slot /></main>
+  </body>
+</html>
+<style is:global>
+  :root { color-scheme: light dark; }
+  body { font: 1.0625rem/1.65 system-ui, sans-serif; max-width: 42rem; margin: 0 auto; padding: 1.5rem 1rem 4rem; }
+  header { margin-bottom: 2.5rem; font-weight: 600; }
+  a { color: inherit; }
+  img { max-width: 100%; height: auto; }
+  pre { overflow-x: auto; padding: 1rem; border-radius: 6px; }
+  time { opacity: 0.65; font-size: 0.9em; }
+  ul.posts { list-style: none; padding: 0; }
+  ul.posts li { margin: 0 0 1.25rem; }
+</style>
