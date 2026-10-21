@@ -9,8 +9,8 @@ const posts = (await getCollection('posts', ({ data }) => !data.draft || import.
   <ul class="posts">
     {posts.map((post) => (
       <li>
-        <a href={`/posts/${post.id}/`}>{post.data.title}</a><br />
-        <time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0, 10)}</time>
+        <a href={`/posts/${post.id}/`}>{post.data.title}</a>
+        <span class="meta"><time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0, 10)}</time><span class="kind">{post.data.kind}</span></span>
       </li>
     ))}
   </ul>
