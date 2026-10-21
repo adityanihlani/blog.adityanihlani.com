@@ -1,29 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import PostList from '../components/PostList.astro';
-import { getPosts, sections } from '../lib';
+import { getPosts } from '../lib';
 
-const groups = await Promise.all(
-  (Object.keys(sections) as (keyof typeof sections)[]).map(async (key) => ({
-    key,
-    label: sections[key].label,
-    posts: (await getPosts(key)).slice(0, 4),
-  })),
-);
+const posts = await getPosts();
 ---
 <Base>
   <section class="hero">
     <h1>Aditya Nihlani</h1>
   </section>
-  <div class="cards">
-    {groups.map((g, i) => (
-      <section class="card" data-section={g.key} style={`--i:${i}`}>
-        <a class="card-head" href={`/${g.key}/`}>
-          <span>{g.label}</span>
-          <span class="arrow" aria-hidden="true">→</span>
-        </a>
-        {g.posts.length > 0 && <PostList posts={g.posts} />}
-      </section>
-    ))}
-  </div>
+  <PostList posts={posts} />
 </Base>

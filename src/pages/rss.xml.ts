@@ -8,11 +8,11 @@ export async function GET(context: APIContext) {
     title: 'Aditya Nihlani',
     description: 'Aditya Nihlani',
     site: context.site!,
-    items: posts.map(({ post, section, slug }) => ({
+    items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.date,
-      link: `/${section}/${slug}/`,
+      link: `/posts/${post.id}/`,
     })),
   });
 }

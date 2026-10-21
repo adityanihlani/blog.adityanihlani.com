@@ -4,9 +4,9 @@ interface Props { posts: Awaited<ReturnType<typeof getPosts>> }
 const { posts } = Astro.props;
 ---
 <ul class="posts">
-  {posts.map(({ post, section, slug }) => (
+  {posts.map((post) => (
     <li>
-      <a href={`/${section}/${slug}/`}>{post.data.title}</a>
+      <a href={`/posts/${post.id}/`}>{post.data.title}</a>
       <span class="meta"><time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0, 10)}</time></span>
     </li>
   ))}
