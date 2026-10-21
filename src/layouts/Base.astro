@@ -1,10 +1,12 @@
 ---
+import '@fontsource-variable/inter';
 import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  section?: string;
 }
-const { title, description } = Astro.props;
+const { title, description, section } = Astro.props;
 const pageTitle = title ? `${title} · Aditya Nihlani` : 'Aditya Nihlani';
 ---
 <!doctype html>
@@ -18,7 +20,7 @@ const pageTitle = title ? `${title} · Aditya Nihlani` : 'Aditya Nihlani';
     <link rel="alternate" type="application/rss+xml" title="RSS" href="/rss.xml" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
   </head>
-  <body>
+  <body data-section={section}>
     <div class="wrap">
       <header class="site">
         <a href="/">Aditya Nihlani</a>
