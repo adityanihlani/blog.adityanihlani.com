@@ -32,7 +32,11 @@ body {
 }
 .wrap { max-width: 40rem; margin: 0 auto; padding: 0 1.5rem; }
 
-header.site { padding: 3rem 0 2.5rem; }
+header.site { padding: 3rem 0 2.5rem; display: flex; justify-content: space-between; align-items: baseline; }
+header.site nav { display: flex; gap: 1.5rem; }
+header.site nav a { font-weight: 500; color: var(--muted); }
+header.site nav a::before { display: none; }
+header.site nav a:hover { color: var(--accent); }
 header.site a {
   font: 600 0.95rem var(--sans);
   letter-spacing: 0.02em;
@@ -52,7 +56,6 @@ ul.posts li:last-child { border-bottom: 1px solid var(--line); }
 ul.posts a { display: block; font-size: 1.35rem; line-height: 1.35; font-weight: 600; text-decoration: none; }
 ul.posts a:hover { color: var(--accent); }
 .meta { font: 0.8rem var(--sans); color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
-.meta .kind { margin-left: .75em; padding: .1em .55em; border: 1px solid var(--line); border-radius: 99px; }
 ul.posts .meta { margin-top: .25rem; }
 
 /* article */
@@ -75,3 +78,7 @@ pre code { background: none; padding: 0; font-size: inherit; }
 .astro-code, .astro-code span { color: var(--shiki-light); }
 @media (prefers-color-scheme: dark) { .astro-code, .astro-code span { color: var(--shiki-dark); } }
 .astro-code { background: var(--code-bg) !important; }
+
+.group { margin-bottom: 3.5rem; }
+.group h2, .section-title { font: 600 0.8rem var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 1rem; }
+.group h2 a { text-decoration: none; }

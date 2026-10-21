@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, sections } from '../../lib';
+
+export function getStaticPaths() {
+  return Object.keys(sections).map((section) => ({ params: { section } }));
+}
+const { section } = Astro.params;
+const posts = await getPosts(section as keyof typeof sections);
+const label = sections[section as keyof typeof sections].label;
+---
+<Base title={label}>
+  <h1 class="section-title">{label}</h1>
+  <PostList posts={posts} />
+</Base>

@@ -1,17 +1,21 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import PostList from '../components/PostList.astro';
+import { getPosts, sections } from '../lib';
 
-const posts = (await getCollection('posts', ({ data }) => !data.draft || import.meta.env.DEV))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const groups = await Promise.all(
+  (Object.keys(sections) as (keyof typeof sections)[]).map(async (key) => ({
+    key,
+    label: sections[key].label,
+    posts: (await getPosts(key)).slice(0, 5),
+  })),
+);
 ---
 <Base>
-  <ul class="posts">
-    {posts.map((post) => (
-      <li>
-        <a href={`/posts/${post.id}/`}>{post.data.title}</a>
-        <span class="meta"><time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0, 10)}</time><span class="kind">{post.data.kind}</span></span>
-      </li>
-    ))}
-  </ul>
+  {groups.map((g) => (
+    <section class="group">
+      <h2><a href={`/${g.key}/`}>{g.label}</a></h2>
+      <PostList posts={g.posts} />
+    </section>
+  ))}
 </Base>

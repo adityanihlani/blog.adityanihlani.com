@@ -1,13 +1,13 @@
 # blog.adityanihlani.com
 
-Astro static site. Posts are Markdown files in `src/content/posts/`.
+Astro static site. Posts are Markdown files in `src/content/posts/tech/` or `src/content/posts/life/` (the folder decides the section).
 
 ```md
 ---
 title: Post title
 description: Optional one-line summary
 date: 2026-10-22
-kind: how-to        # or: article (default)
+
 draft: true         # optional; drafts show in `npm run dev` only
 ---
 
